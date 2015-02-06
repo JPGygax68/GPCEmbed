@@ -1,0 +1,26 @@
+2015-02-05
+==========
+
+Bin2C could use some improving. The minimalist approach taken so far has paid off in that it was fast to get working, but the need for more powerful features is definitely there.
+
+The better part of the work will probably go into CMake integration, because that's were most of the pain currently is (not all of it, though). I want adding constant data to a target to be as foolproof and painless as possible. If at all possible, I'd like to add a CMake component to the Bin2C package that defines a new command.
+
+That command could have a signature such as:
+
+  gpc_target_add_constant_data(<target> FILE <data_file> VARIABLE <variable_name> IMPORT_HEADER <header_file> DATA_TYPE <type>)
+  
+This command would take care of adding the CMake custom commands that create a C++ source file exporting the data as a std::array<> and a C++ header file declaring that array.
+
+The variable name should support namespaces.
+
+Header-only libraries (INTERFACE libraries in CMake jargon) should be supported too, though that is only reliably possible by wrapping the static data in a function. [TODO: Should this be done for the other project types too, to normalize and support easier switching?]
+
+! Even for header-only libraries, it could be beneficial to generate a separate import header file, in case the developer wants to have a quick look at the declaration - opening the definition file could result in long loading delays.
+
+It would be nice to also support adding multiple files in a single command. I'm not certain how much extra work that would require, though.
+
+
+2015-01-21
+==========
+
+- Apparently, Bin2C does not detect when working with empty files. Not bad in itself, but Visual Studio tries to build endlessly, without any way to abort.
