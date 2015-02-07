@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 # Project + basics
 #
 
-add_executable(GPCBin2C bin2c.cpp)
+add_executable(GPCEmbed embed.cpp)
 
 #------------------------------------------------
 # Tests
@@ -19,15 +19,15 @@ add_subdirectory(tests)
 #
 
 # Create a config file for build tree usage:
-set(TARGET_SET "GPCBin2C")
+set(TARGET_SET "GPCEmbed")
 set(TARGETSET_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(TARGETSET_LIB_DIR     ${CMAKE_CURRENT_BINARY_DIR}/lib)
 set(TARGETSET_CMAKE_DIR   ${CMAKE_CURRENT_BINARY_DIR}/src)
 configure_file("project-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake" @ONLY)
 
-export(TARGETS GPCBin2C FILE "GPCBin2C-targets.cmake")
+export(TARGETS GPCEmbed FILE "GPCEmbed-targets.cmake")
 
-export(PACKAGE GPCBin2C)
+export(PACKAGE GPCEmbed)
 
 #------------------------------------------------
 # INSTALLATION
@@ -40,12 +40,12 @@ set(TARGETSET_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/include)
 set(TARGETSET_LIB_DIR     ${CMAKE_INSTALL_PREFIX}/lib) # not needed with header-only libraries
 set(TARGETSET_CMAKE_DIR   ${CMAKE_INSTALL_PREFIX}/CMake)
 configure_file("project-config.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/InstallFiles/GPCBin2C-config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/InstallFiles/GPCEmbed-config.cmake"
   @ONLY)
   
-install(TARGETS GPCBin2C 
-  EXPORT GPCBin2C-targets
+install(TARGETS GPCEmbed 
+  EXPORT GPCEmbed-targets
   RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
 )
 
-install(EXPORT GPCBin2C-targets DESTINATION "cmake")
+install(EXPORT GPCEmbed-targets DESTINATION "cmake")

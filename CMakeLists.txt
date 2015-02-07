@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 # Project + basics
 #
 
-project(GPCBin2C)
+project(GPCEmbed)
 
 enable_testing()
 
