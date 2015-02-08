@@ -12,8 +12,9 @@ endif()
 add_test(NAME fails_without_parameters 
   COMMAND ${CMAKE_COMMAND} 
     -DCMD=$<TARGET_FILE:GPCEmbed>
+    -DERROR_CONTAINS=No\ data\ file\ specified
     # TODO: instead of just non-zero, also check for the text "no data file specified"
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/test_nonzero.cmake
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/test_command.cmake
 )
 
 if (0)
