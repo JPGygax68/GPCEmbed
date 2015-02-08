@@ -20,12 +20,10 @@ execute_process(COMMAND ${CMD}
 )
 
 if (ERROR_CONTAINS)
-  message("ERROR_CONTAINS=${ERROR_CONTAINS}")
-  #message(${error})
   string(FIND "${error}" "${ERROR_CONTAINS}" s)
   if (s LESS 0)
     message("Error output:\n${error}")
-    message(FATAL_ERROR "Check failed: error output does not contain \"${ERROR_CONTAINS}\"")
+    message(FATAL_ERROR "Check failed: error output does not contain \"${ERROR_CONTAINS}\".\nFull error output:\n${error}")
   endif()
 endif()
 
